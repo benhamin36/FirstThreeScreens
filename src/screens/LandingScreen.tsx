@@ -12,10 +12,26 @@ interface LandingScreenProps {
 export default function LandingScreen({ onFindHelp, onSelectSubject }: LandingScreenProps) {
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50/60 via-white to-white">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-100/30 rounded-full blur-3xl -z-0" />
-        <div className="absolute top-20 right-0 w-72 h-72 bg-secondary-100/30 rounded-full blur-3xl -z-0" />
+      {/* Hero with lined paper background */}
+      <section className="relative overflow-hidden">
+        {/* Lined paper texture */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundColor: '#fefdf6',
+            backgroundImage: `repeating-linear-gradient(to bottom, transparent, transparent 31px, rgba(59,130,246,0.07) 31px, rgba(59,130,246,0.07) 32px)`,
+          }}
+        />
+        {/* Red margin line */}
+        <div className="absolute top-0 bottom-0 w-[2px] bg-red-300/30" style={{ left: '60px' }} />
+        {/* Three-hole punch */}
+        <div className="absolute left-3 top-12 w-3 h-3 rounded-full bg-gray-200/60 shadow-[inset_0_1px_2px_rgba(0,0,0,0.08)]" />
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gray-200/60 shadow-[inset_0_1px_2px_rgba(0,0,0,0.08)]" />
+        <div className="absolute left-3 bottom-12 w-3 h-3 rounded-full bg-gray-200/60 shadow-[inset_0_1px_2px_rgba(0,0,0,0.08)]" />
+
+        {/* Soft color washes on top of paper */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-100/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-0 w-72 h-72 bg-secondary-100/20 rounded-full blur-3xl" />
 
         <div className="relative max-w-6xl mx-auto px-5 sm:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28">
           <div className="text-center max-w-2xl mx-auto">

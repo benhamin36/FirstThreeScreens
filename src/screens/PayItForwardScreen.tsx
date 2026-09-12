@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { MessageCircle, XCircle, HandHeart, ArrowRight, Check, Clock, Sparkles } from 'lucide-react';
+import { MessageCircle, XCircle, HandHeart, ArrowRight, Check, Clock, Sparkles, HelpCircle } from 'lucide-react';
 import { helpRequests, type HelpRequest } from '@/types';
+import StudentFigure from '@/components/StudentFigure';
+import LinedPaper from '@/components/LinedPaper';
 
 interface PayItForwardScreenProps {
   onBack: () => void;
@@ -40,9 +42,28 @@ export default function PayItForwardScreen({ onBack }: PayItForwardScreenProps) 
             {/* Student header */}
             <div className="p-6 sm:p-8 border-b border-gray-50">
               <div className="flex items-start gap-4">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${request.avatarColor} flex items-center justify-center shadow-md flex-shrink-0`}>
-                  <span className="text-xl font-bold text-white">{request.initials}</span>
-                </div>
+                {/* Student figure on lined paper */}
+                <LinedPaper
+                  className="w-20 h-24 rounded-2xl overflow-hidden flex items-end justify-center pt-2 pb-1 flex-shrink-0 shadow-sm"
+                  showHoles={false}
+                  showMargin={false}
+                  lineSpacing={10}
+                  lineColor="rgba(59,130,246,0.07)"
+                >
+                  <div className="w-14">
+                    <StudentFigure
+                      skinColor={request.skinColor}
+                      hairColor={request.hairColor}
+                      shirtFrom={request.shirtFrom}
+                      shirtTo={request.shirtTo}
+                      hairStyle={request.hairStyle}
+                      expression={request.expression}
+                      accessory="pencil"
+                      size={56}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </LinedPaper>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h2 className="text-xl font-bold text-gray-800">{request.studentName}</h2>
@@ -64,20 +85,28 @@ export default function PayItForwardScreen({ onBack }: PayItForwardScreenProps) 
               </div>
             </div>
 
-            {/* Question */}
+            {/* Question on lined paper */}
             <div className="p-6 sm:p-8">
-              <div className="mb-5">
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Their question</p>
-                <p className="text-gray-600 leading-relaxed">{request.question}</p>
-              </div>
-
-              <div className="rounded-2xl bg-gray-50 border border-gray-100 p-4 mb-6">
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1.5">Quick summary</p>
-                <p className="text-sm text-gray-600">{request.questionSummary}</p>
-              </div>
+              <LinedPaper
+                className="rounded-2xl overflow-hidden p-5 pl-8"
+                showHoles
+                showMargin
+                marginPosition="28px"
+                lineSpacing={28}
+                lineColor="rgba(59,130,246,0.08)"
+              >
+                <div className="mb-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Their question</p>
+                  <p className="text-gray-600 leading-relaxed">{request.question}</p>
+                </div>
+                <div className="rounded-xl bg-white/60 backdrop-blur-sm border border-gray-100 p-3 mt-2">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1.5">Quick summary</p>
+                  <p className="text-sm text-gray-600">{request.questionSummary}</p>
+                </div>
+              </LinedPaper>
 
               {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 mt-6">
                 <button
                   onClick={() => setAction('chat')}
                   className="flex-1 px-6 py-3.5 rounded-xl bg-primary-500 text-white font-bold shadow-md shadow-primary-200 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-200/60 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2"
@@ -100,8 +129,18 @@ export default function PayItForwardScreen({ onBack }: PayItForwardScreenProps) 
         {/* Chat started */}
         {action === 'chat' && (
           <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8 text-center animate-bounce-in">
-            <div className="w-16 h-16 rounded-2xl bg-success-50 flex items-center justify-center mx-auto mb-4">
-              <Check className="w-8 h-8 text-success-500" strokeWidth={2.5} />
+            <div className="w-20 mx-auto mb-4">
+              <StudentFigure
+                skinColor={request.skinColor}
+                hairColor={request.hairColor}
+                shirtFrom={request.shirtFrom}
+                shirtTo={request.shirtTo}
+                hairStyle={request.hairStyle}
+                expression="happy"
+                accessory="book"
+                size={80}
+                className="w-full h-auto"
+              />
             </div>
             <h3 className="text-xl font-bold text-gray-800">You are now chatting with {request.studentName}!</h3>
             <p className="mt-2 text-gray-500 text-sm max-w-md mx-auto leading-relaxed">

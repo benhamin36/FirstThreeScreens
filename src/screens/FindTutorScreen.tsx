@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Star, MessageCircle, Clock, Check, ArrowLeft, Search } from 'lucide-react';
 import { subjects, tutors, type Tutor } from '@/types';
+import StudentFigure from '@/components/StudentFigure';
+import LinedPaper from '@/components/LinedPaper';
 
 interface FindTutorScreenProps {
   selectedSubject: string;
@@ -71,8 +73,18 @@ export default function FindTutorScreen({ selectedSubject, onBack, onChat }: Fin
         {/* Tutor cards */}
         {chatStarted ? (
           <div className="rounded-2xl bg-white border border-gray-100 p-8 text-center animate-bounce-in">
-            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${chatStarted.avatarColor} flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-              <span className="text-xl font-bold text-white">{chatStarted.initials}</span>
+            <div className="w-20 mx-auto mb-4">
+              <StudentFigure
+                skinColor={chatStarted.skinColor}
+                hairColor={chatStarted.hairColor}
+                shirtFrom={chatStarted.shirtFrom}
+                shirtTo={chatStarted.shirtTo}
+                hairStyle={chatStarted.hairStyle}
+                expression="happy"
+                accessory={chatStarted.accessory}
+                size={80}
+                className="w-full h-auto"
+              />
             </div>
             <h3 className="text-xl font-bold text-gray-800">Chat started with {chatStarted.name}!</h3>
             <p className="mt-2 text-gray-500 text-sm max-w-md mx-auto">
@@ -106,11 +118,29 @@ export default function FindTutorScreen({ selectedSubject, onBack, onChat }: Fin
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
                 <div className="p-5 sm:p-6 flex flex-col sm:flex-row gap-5">
-                  {/* Avatar */}
-                  <div className="flex-shrink-0">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${tutor.avatarColor} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-200`}>
-                      <span className="text-xl font-bold text-white">{tutor.initials}</span>
-                    </div>
+                  {/* Student figure on lined paper */}
+                  <div className="flex-shrink-0 flex justify-center sm:justify-start">
+                    <LinedPaper
+                      className="w-20 h-24 rounded-xl overflow-hidden flex items-end justify-center pt-2 pb-1"
+                      showHoles={false}
+                      showMargin={false}
+                      lineSpacing={10}
+                      lineColor="rgba(59,130,246,0.07)"
+                    >
+                      <div className="w-14">
+                        <StudentFigure
+                          skinColor={tutor.skinColor}
+                          hairColor={tutor.hairColor}
+                          shirtFrom={tutor.shirtFrom}
+                          shirtTo={tutor.shirtTo}
+                          hairStyle={tutor.hairStyle}
+                          expression={tutor.expression}
+                          accessory={tutor.accessory}
+                          size={56}
+                          className="w-full h-auto group-hover:scale-105 transition-transform duration-200"
+                        />
+                      </div>
+                    </LinedPaper>
                   </div>
 
                   {/* Info */}

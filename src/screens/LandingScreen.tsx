@@ -1,5 +1,7 @@
 import { ArrowRight, Sparkles, Moon, Clock, Users, HandHeart } from 'lucide-react';
 import PayItForwardGraphic from '@/components/PayItForwardGraphic';
+import StudentFigure from '@/components/StudentFigure';
+import LinedPaper from '@/components/LinedPaper';
 import { subjects } from '@/types';
 
 interface LandingScreenProps {
@@ -62,23 +64,96 @@ export default function LandingScreen({ onFindHelp, onSelectSubject }: LandingSc
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: Clock, color: 'bg-primary-50 text-primary-600', title: 'Get help', desc: 'Pick a subject and connect with an available peer tutor in minutes.' },
-            { icon: Users, color: 'bg-secondary-50 text-secondary-600', title: 'Learn together', desc: 'Chat one-on-one and work through the problem at your own pace.' },
-            { icon: HandHeart, color: 'bg-accent-50 text-accent-600', title: 'Pay it forward', desc: 'When you are ready, help another student with a subject you know.' },
+            {
+              icon: Clock,
+              color: 'bg-primary-50 text-primary-600',
+              title: 'Get help',
+              desc: 'Pick a subject and connect with an available peer tutor in minutes.',
+              figure: (
+                <StudentFigure
+                  skinColor="#FCDBC4"
+                  hairColor="#7B5E3B"
+                  shirtFrom="#fdba74"
+                  shirtTo="#fb923c"
+                  hairStyle="short"
+                  expression="confused"
+                  accessory="pencil"
+                  size={64}
+                  className="w-full h-auto"
+                />
+              ),
+              paperColor: 'rgba(249,115,22,0.06)',
+            },
+            {
+              icon: Users,
+              color: 'bg-secondary-50 text-secondary-600',
+              title: 'Learn together',
+              desc: 'Chat one-on-one and work through the problem at your own pace.',
+              figure: (
+                <StudentFigure
+                  skinColor="#E8C39E"
+                  hairColor="#3D2817"
+                  shirtFrom="#8eb6ff"
+                  shirtTo="#5a8eff"
+                  hairStyle="short"
+                  expression="neutral"
+                  accessory="book"
+                  bookColor="#376bfc"
+                  size={64}
+                  className="w-full h-auto"
+                />
+              ),
+              paperColor: 'rgba(59,130,246,0.06)',
+            },
+            {
+              icon: HandHeart,
+              color: 'bg-accent-50 text-accent-600',
+              title: 'Pay it forward',
+              desc: 'When you are ready, help another student with a subject you know.',
+              figure: (
+                <StudentFigure
+                  skinColor="#F0D0B0"
+                  hairColor="#2D1810"
+                  shirtFrom="#7dcaa7"
+                  shirtTo="#4eb088"
+                  hairStyle="long"
+                  expression="happy"
+                  accessory="book"
+                  bookColor="#2f9970"
+                  size={64}
+                  className="w-full h-auto"
+                />
+              ),
+              paperColor: 'rgba(47,153,112,0.06)',
+            },
           ].map((step, i) => (
             <div
               key={step.title}
-              className="relative bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up"
+              className="relative bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 animate-fade-in-up overflow-hidden"
               style={{ animationDelay: `${i * 0.1}s` }}
             >
-              <div className={`w-12 h-12 rounded-xl ${step.color} flex items-center justify-center mb-4`}>
-                <step.icon className="w-6 h-6" strokeWidth={2.2} />
+              <div className="flex items-start justify-between">
+                <div className={`w-12 h-12 rounded-xl ${step.color} flex items-center justify-center`}>
+                  <step.icon className="w-6 h-6" strokeWidth={2.2} />
+                </div>
+                <div className="absolute top-6 right-6 w-7 h-7 rounded-full bg-gray-50 flex items-center justify-center text-xs font-bold text-gray-300">
+                  {i + 1}
+                </div>
               </div>
+
+              {/* Student figure on lined paper */}
+              <LinedPaper
+                className="w-20 h-24 rounded-xl mt-4 mb-4 overflow-hidden flex items-end justify-center pt-2 pb-1"
+                showHoles={false}
+                showMargin={false}
+                lineSpacing={9}
+                lineColor={step.paperColor}
+              >
+                <div className="w-12">{step.figure}</div>
+              </LinedPaper>
+
               <h3 className="text-lg font-bold text-gray-800 mb-2">{step.title}</h3>
               <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
-              <div className="absolute top-6 right-6 w-7 h-7 rounded-full bg-gray-50 flex items-center justify-center text-xs font-bold text-gray-300">
-                {i + 1}
-              </div>
             </div>
           ))}
         </div>

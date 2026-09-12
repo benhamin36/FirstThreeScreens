@@ -45,6 +45,13 @@ export interface Tutor {
   name: string;
   initials: string;
   avatarColor: string;
+  skinColor: string;
+  hairColor: string;
+  hairStyle: 'short' | 'medium' | 'long';
+  expression: 'neutral' | 'confused' | 'happy';
+  accessory: 'book' | 'pencil' | 'none';
+  shirtFrom: string;
+  shirtTo: string;
   subjects: string[];
   rating: number;
   sessions: number;
@@ -58,6 +65,12 @@ export interface HelpRequest {
   studentName: string;
   initials: string;
   avatarColor: string;
+  skinColor: string;
+  hairColor: string;
+  hairStyle: 'short' | 'medium' | 'long';
+  expression: 'neutral' | 'confused' | 'happy';
+  shirtFrom: string;
+  shirtTo: string;
   subject: string;
   subjectIcon: LucideIcon;
   subjectColor: string;
@@ -86,6 +99,13 @@ export const tutors: Tutor[] = [
     name: 'Maya Chen',
     initials: 'MC',
     avatarColor: 'from-primary-400 to-primary-600',
+    skinColor: '#F0D0B0',
+    hairColor: '#2D1810',
+    hairStyle: 'long',
+    expression: 'happy',
+    accessory: 'book',
+    shirtFrom: '#7dcaa7',
+    shirtTo: '#4eb088',
     subjects: ['Calculus', 'Linear Algebra', 'Statistics'],
     rating: 4.9,
     sessions: 127,
@@ -98,6 +118,13 @@ export const tutors: Tutor[] = [
     name: 'Jordan Patel',
     initials: 'JP',
     avatarColor: 'from-secondary-400 to-secondary-600',
+    skinColor: '#E8C39E',
+    hairColor: '#3D2817',
+    hairStyle: 'short',
+    expression: 'neutral',
+    accessory: 'book',
+    shirtFrom: '#8eb6ff',
+    shirtTo: '#5a8eff',
     subjects: ['Calculus', 'Algebra II', 'Physics'],
     rating: 4.8,
     sessions: 89,
@@ -110,6 +137,13 @@ export const tutors: Tutor[] = [
     name: 'Sam Rivera',
     initials: 'SR',
     avatarColor: 'from-accent-400 to-accent-600',
+    skinColor: '#FCDBC4',
+    hairColor: '#7B5E3B',
+    hairStyle: 'medium',
+    expression: 'happy',
+    accessory: 'pencil',
+    shirtFrom: '#fdba74',
+    shirtTo: '#fb923c',
     subjects: ['Statistics', 'Pre-Calculus', 'Geometry'],
     rating: 4.7,
     sessions: 54,
@@ -125,6 +159,12 @@ export const helpRequests: HelpRequest[] = [
     studentName: 'Alex Johnson',
     initials: 'AJ',
     avatarColor: 'from-secondary-400 to-secondary-600',
+    skinColor: '#FCDBC4',
+    hairColor: '#7B5E3B',
+    hairStyle: 'short',
+    expression: 'confused',
+    shirtFrom: '#8eb6ff',
+    shirtTo: '#5a8eff',
     subject: 'Essay Writing',
     subjectIcon: PenTool,
     subjectColor: 'bg-accent-100 text-accent-700',

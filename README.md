@@ -38,7 +38,7 @@
 
 ## Before and After
 Before:
-
+<img width="1386" height="895" alt="image" src="https://github.com/user-attachments/assets/a40423d5-5f01-428e-af97-672a00491ef5" />
 
 After:
 <img width="1637" height="885" alt="image" src="https://github.com/user-attachments/assets/e448b59c-ca54-4a1d-80ae-f701ae79ed0f" />
